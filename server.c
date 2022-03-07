@@ -1,4 +1,4 @@
-#include "client.h"
+#include "server.h"
 
 static void	print_pid(void)
 {
@@ -18,13 +18,21 @@ static void	print_pid(void)
 
 static void	leave(int crypt)
 {
-	(void)sig;
+	(void)crypt;
 	exit (0);
 }
 
 static void	catch_n_crypt(int crypt)
 {
-
+	static t_char sym = {0, 0};
+	
+	if(crypt == SIGUSR2)
+		// act
+	sym.cur_bit++;
+	if(sym.cur_bit == 8)
+	{
+		//print
+	}
 }
 
 int	main(void)
@@ -32,5 +40,8 @@ int	main(void)
 	print_pid();
 	signal(SIGUSR1, catch_n_crypt);
 	signal(SIGUSR2, catch_n_crypt);
-	signal(SIGINT,)
+	signal(SIGINT, leave);
+	signal(SIGTERM, leave);
+	while (1)
+		pause();
 }

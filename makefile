@@ -1,13 +1,18 @@
- NAME = minitalk
+ CLIENT = client
 
- SRC = client.c server.c sys_func.c sys_func_plus.c client_utils.c
+ SERVER = server
 
- OBJ = $(SRC:.c=.o)
+ SRC_C = client.c client_utils.c
 
- all: $(NAME)
+ SRC_S = server.c 
 
- $(NAME): $(OBJ)
-	gcc -Wall -Werror -Wextra -fsanitize=address $(OBJ) -o $(NAME)
+ SRC_SERVICE = sys_func.c sys_func_plus.c 
 
-%.o : %.c
+ OBJ_C = $(SRC_C:.c=.o)
+
+ OBJ_S = $(SRC_s:.c=.o)
+
+ OBJ_SERVICE = $(SRC_SERVICE:.c=.o)
+
+
 	
