@@ -4,15 +4,15 @@ void	letter(int pid, char ch)
 {
 	int	cur_byte;
 
-	cur_byte = 7;
-	while(cur_byte >= 0)
+	cur_byte = 0;
+	while(cur_byte < 8)
 	{
-		if(ch >> cur_byte & 1)
-			kill(pid, SIGUSR1);
-		else
+		if(ch & (1 << cur_byte))
 			kill(pid, SIGUSR2);
-		usleep(500);
-		cur_byte--;
+		else
+			kill(pid, SIGUSR1);
+		usleep(200);
+		cur_byte++;
 	}
 }
 

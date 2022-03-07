@@ -3,6 +3,7 @@
 
 #include <signal.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 typedef struct s_arg
 {

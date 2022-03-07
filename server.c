@@ -12,37 +12,38 @@ static void	print_pid(void)
 		putstr_endl("Error at ft_itoa(pid)", 2);
 		return ;
 	}
-	putstr_endl(pidstr, 2);
+	putstr_endl(pidstr, 1);
 	free(pidstr);
 }
 
-static void	leave(int crypt)
+static void	handler_msg(int sig)
 {
-	(void)crypt;
-	exit (0);
+	static t_char	chr = {0, 0};
+
+	if (sig == SIGUSR2)
+		chr.character |= 1 << chr.current_bit;
+	chr.current_bit++;
+	if (chr.current_bit == 8)
+	{
+		putchar(chr.character, 1);
+		chr.character = 0;
+		chr.current_bit = 0;
+	}
 }
 
-static void	catch_n_crypt(int crypt)
+static void	handler_exit(int sig)
 {
-	static t_char sym = {0, 0};
-
-	if(crypt == SIGUSR2)
-		sym.ch |= 1 << sym.cur_bit;
-	sym.cur_bit++;
-	if(sym.cur_bit == 8)
-	{
-		sym.cur_bit = 0;
-		sym.ch = 0;
-	}
+	(void)sig;
+	exit(0);
 }
 
 int	main(void)
 {
 	print_pid();
-	signal(SIGUSR1, catch_n_crypt);
-	signal(SIGUSR2, catch_n_crypt);
-	signal(SIGINT, leave);
-	signal(SIGTERM, leave);
+	signal(SIGUSR1, handler_msg);
+	signal(SIGUSR2, handler_msg);
+	signal(SIGINT, handler_exit);
+	signal(SIGTERM, handler_exit);
 	while (1)
 		pause();
 }

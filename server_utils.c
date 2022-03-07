@@ -1,6 +1,6 @@
 #include "server.h"
 
-void putchar (char ch, int fd)
+void putchar(char ch, int fd)
 {
       write (fd, &ch, 1);
 }

@@ -1,5 +1,18 @@
 #include "client.h"
 
+void putstr_endl(char *line, int fd)
+{
+    unsigned int	i;
+
+    i = 0;
+	while(line[i])
+	{
+		write(fd, &line[i], 1);
+		i++;
+	}
+	write(1, "\n", 1);
+}
+
 int	check_argv(char *str)
 {
 	size_t	i;
@@ -24,18 +37,5 @@ int	check_in(int argc, char **argv, t_arg *arg)
 		return (-1);
 	arg->str = argv[2];
 	arg->pid = atoi(argv[1]);
-	return(0);
-}
-
-void putstr_endl(char *line, int fd)
-{
-    unsigned int	i;
-
-    i = 0;
-	while(line[i])
-	{
-		write(fd, &line[i], 1);
-		i++;
-	}
-	write(1, "\n", 1);
+	return(1);
 }
