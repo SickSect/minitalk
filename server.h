@@ -11,9 +11,10 @@ typedef struct s_char
 	int		cur_bit;
 }	t_char;
 
-void	putstr_endl(char *line, int fd);
-void	putstr(char *line, int fd);
-int		atoi(const char *str);
+void putstr_endl(char *line, int fd);
+void putchar (char ch, int fd);
 char	*ft_itoa(int n);
+char	*ft_strdup(const char *str_s);
+int	ft_strlen(const char *str);
 
 #endif

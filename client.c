@@ -4,14 +4,15 @@ void	letter(int pid, char ch)
 {
 	int	cur_byte;
 
-	cur_byte = 128;
-	while(cur_byte != 0)
+	cur_byte = 7;
+	while(cur_byte >= 0)
 	{
-		if(cur_byte & ch)
+		if(ch >> cur_byte & 1)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		cur_byte /= 2;
+		usleep(500);
+		cur_byte--;
 	}
 }
 
@@ -30,7 +31,7 @@ void sending(t_arg *arg)
 int main(int argc, char **argv)
 {
 	t_arg    arg;
-	
+
 	if (check_in(argc, argv, &arg) == -1)
 	{
 		putstr_endl("Invalid CLI arguments", 2);

@@ -2,7 +2,7 @@
 
 static void	print_pid(void)
 {
-	__pid_t pid;
+	pid_t pid;
 	char	*pidstr;
 
 	pid = getgid();
@@ -25,13 +25,14 @@ static void	leave(int crypt)
 static void	catch_n_crypt(int crypt)
 {
 	static t_char sym = {0, 0};
-	
+
 	if(crypt == SIGUSR2)
-		// act
+		sym.ch |= 1 << sym.cur_bit;
 	sym.cur_bit++;
 	if(sym.cur_bit == 8)
 	{
-		//print
+		sym.cur_bit = 0;
+		sym.ch = 0;
 	}
 }
 
