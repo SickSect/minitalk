@@ -1,21 +1,16 @@
 #include "server.h"
 
-void putchar(char ch, int fd)
+void ft_putstr(char *str, int fd)
 {
-      write (fd, &ch, 1);
-}
+	unsigned int	i;
 
-void putstr_endl(char *line, int fd)
-{
-    unsigned int	i;
-
-    i = 0;
-	while(line[i])
+	i = 0;
+	while(str[i])
 	{
-		write(fd, &line[i], 1);
+		write(fd, &str[i], 1);
 		i++;
 	}
-	write(1, "\n", 1);
+	write(fd, "\n", 1);
 }
 
 static int	ft_len(int n)
@@ -76,5 +71,33 @@ char	*ft_itoa(int n)
 	str = ft_mod(nb, len, neg);
 	if (!str)
 		return (NULL);
+	return (str);
+}
+
+int	ft_strlen(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+
+char	*ft_strdup(const char *str_s)
+{
+	char	*str;
+	size_t	i;
+
+	i = 0;
+	str = malloc(sizeof(char) * (ft_strlen(str_s) + 1));
+	if (!str)
+		return (NULL);
+	while (str_s[i])
+	{
+		str[i] = str_s[i];
+		i++;
+	}
+	str[i] = '\0';
 	return (str);
 }

@@ -1,8 +1,8 @@
  CLIENT = client
  SERVER = server
 
- SRC_C = client.c client_utils.c
- SRC_S = server.c server_utils.c server_utils_plus.c
+ SRC_C = C/client.c C/client_utils.c
+ SRC_S = S/server.c S/server_utils.c
 
  OBJ_C = $(SRC_C:.c=.o)
  OBJ_S = $(SRC_S:.c=.o)
@@ -21,7 +21,7 @@ $(SERVER) :  $(OBJ_S)
 	gcc $(FLG) -c $< -o $@
 
 clean :
-	rm -rf *.o
+	rm -rf $(OBJ_C) $(OBJ_S)
 
 fclean : clean
 	rm -rf $(SERVER) $(CLIENT)
