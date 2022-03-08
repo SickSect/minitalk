@@ -1,8 +1,8 @@
  CLIENT = client
  SERVER = server
 
- SRC_C = C/client.c C/client_utils.c
- SRC_S = S/server.c S/server_utils.c
+ SRC_C = mandatory/C/client.c mandatory/C/client_utils.c
+ SRC_S = mandatory/S/server.c mandatory/S/server_utils.c
 
  OBJ_C = $(SRC_C:.c=.o)
  OBJ_S = $(SRC_S:.c=.o)
