@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ugina <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/09 15:51:11 by ugina             #+#    #+#             */
+/*   Updated: 2022/03/09 15:51:14 by ugina            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "server.h"
 
 void	ft_putchar_fd(char c, int fd)
@@ -7,7 +19,7 @@ void	ft_putchar_fd(char c, int fd)
 
 static void	handler_msg(int sig)
 {
-	static t_char	chr =	{0, 0};
+	static t_char	chr = {0, 0};
 
 	if (sig == SIGUSR2)
 		chr.character |= 1 << chr.bit;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ugina <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/09 15:35:06 by ugina             #+#    #+#             */
+/*   Updated: 2022/03/09 15:35:10 by ugina            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "client_bonus.h"
 
 void	send(t_arg *arg)
@@ -32,8 +44,7 @@ int	check_argv(char *str)
 
 int	check_in(t_arg *arg, int argc, char **argv)
 {
-	
-	if(!arg || argc != 3 || !check_argv(argv[1]))
+	if (!arg || argc != 3 || !check_argv(argv[1]))
 		return (-1);
 	arg->pid = ft_atoi(argv[1]);
 	arg->str = argv[2];

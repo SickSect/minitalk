@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ugina <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/09 15:46:49 by ugina             #+#    #+#             */
+/*   Updated: 2022/03/09 15:46:51 by ugina            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "server_bonus.h"
 
 void	ft_putchar_fd(char c, int fd)
@@ -7,7 +19,7 @@ void	ft_putchar_fd(char c, int fd)
 
 static void	handler_msg(int sig, siginfo_t *info, void *context)
 {
-	static t_char chr	= {0, 0};
+	static t_char	chr = {0, 0};
 
 	(void)context;
 	if (sig == SIGUSR2)
@@ -49,7 +61,7 @@ int	main(void)
 	struct sigaction	sa;
 
 	print_pid();
-	sa.sa_handler = SIG_DFL; 
+	sa.sa_handler = SIG_DFL;
 	sa.sa_sigaction = handler_msg;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = SA_SIGINFO;
