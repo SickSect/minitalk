@@ -1,6 +1,6 @@
 #include "client_bonus.h"
 
-void get_char(char str, int pid)
+void	get_char(char str, int pid)
 {
 	int	bit;
 
@@ -16,12 +16,12 @@ void get_char(char str, int pid)
 	}
 }
 
-void ft_putstr(char *str, int fd)
+void	ft_putstr(char *str, int fd)
 {
 	unsigned int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		write(fd, &str[i], 1);
 		i++;

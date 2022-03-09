@@ -7,12 +7,12 @@ void	ft_putchar_fd(char c, int fd)
 
 static void	handler_msg(int sig)
 {
-	static t_char chr = {0, 0};
+	static t_char	chr =	{0, 0};
 
-	if(sig == SIGUSR2)
+	if (sig == SIGUSR2)
 		chr.character |= 1 << chr.bit;
 	chr.bit++;
-	if(chr.bit == 8)
+	if (chr.bit == 8)
 	{
 		ft_putchar_fd(chr.character, 1);
 		chr.character = 0;
@@ -29,11 +29,11 @@ static void	handler_exit(int sig)
 void	print_pid(void)
 {
 	pid_t	pid;
-	char *str_pid;
+	char	*str_pid;
 
 	pid = getpid();
 	str_pid = ft_itoa(pid);
-	if(!str_pid)
+	if (!str_pid)
 	{
 		ft_putstr("Error at itoa()", 2);
 		return ;

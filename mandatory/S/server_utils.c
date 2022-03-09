@@ -1,11 +1,11 @@
 #include "server.h"
 
-void ft_putstr(char *str, int fd)
+void	ft_putstr(char *str, int fd)
 {
 	unsigned int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		write(fd, &str[i], 1);
 		i++;
@@ -72,16 +72,6 @@ char	*ft_itoa(int n)
 	if (!str)
 		return (NULL);
 	return (str);
-}
-
-int	ft_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
 }
 
 char	*ft_strdup(const char *str_s)

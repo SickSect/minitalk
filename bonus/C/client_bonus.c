@@ -5,21 +5,21 @@ void	send(t_arg *arg)
 	size_t	i;
 
 	i = 0;
-	while(arg->str[i])
+	while (arg->str[i])
 	{
 		get_char(arg->str[i], arg->pid);
 		i++;
 	}
 }
 
-int check_argv(char *str)
+int	check_argv(char *str)
 {
 	unsigned int	i;
 	int				res;
 
 	i = 0;
 	res = -1;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] >= '0' && str[i] <= '9')
 			res = 1;
@@ -40,14 +40,14 @@ int	check_in(t_arg *arg, int argc, char **argv)
 	return (1);
 }
 
-static void know_handler(int sig)
+static void	know_handler(int sig)
 {
 	(void)sig;
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_arg    arg;
+	t_arg	arg;
 
 	signal(SIGUSR1, know_handler);
 	if (check_in(&arg, argc, argv) == -1)

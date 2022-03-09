@@ -1,6 +1,6 @@
 #include "client.h"
 
-void get_char(char str, int pid)
+void	get_char(char str, int pid)
 {
 	int	bit;
 
@@ -21,7 +21,7 @@ void	send(t_arg *arg)
 	size_t	i;
 
 	i = 0;
-	while(arg->str[i])
+	while (arg->str[i])
 	{
 		get_char(arg->str[i], arg->pid);
 		i++;
@@ -55,9 +55,9 @@ int	check_in(t_arg *arg, int argc, char **argv)
 	return (1);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_arg    arg;
+	t_arg	arg;
 
 	if (check_in(&arg, argc, argv) == -1)
 	{

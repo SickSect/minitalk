@@ -2,12 +2,12 @@
  SERVER = server
 
  SRC_C = mandatory/C/client.c mandatory/C/client_utils.c
- SRC_S = mandatory/S/server.c mandatory/S/server_utils.c
+ SRC_S = mandatory/S/server.c mandatory/S/server_utils.c mandatory/S/server_utils_plus.c
  OBJ_C = $(SRC_C:.c=.o)
  OBJ_S = $(SRC_S:.c=.o)
 
  B_SRC_C = bonus/C/client_bonus.c bonus/C/client_utils_bonus.c
- B_SRC_S = bonus/S/server_bonus.c bonus/S/server_utils_bonus.c
+ B_SRC_S = bonus/S/server_bonus.c bonus/S/server_utils_bonus.c bonus/S/server_utils_plus_bonus.c
  B_OBJ_C = $(B_SRC_C:.c=.o)
  B_OBJ_S = $(B_SRC_S:.c=.o)
 
