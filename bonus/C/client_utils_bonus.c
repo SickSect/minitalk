@@ -1,5 +1,21 @@
 #include "client_bonus.h"
 
+void get_char(char str, int pid)
+{
+	int	bit;
+
+	bit = 0;
+	while (bit < 8)
+	{
+		if (str & (1 << bit))
+			kill(pid, SIGUSR2);
+		else
+			kill(pid, SIGUSR1);
+		usleep(200);
+		bit++;
+	}
+}
+
 void ft_putstr(char *str, int fd)
 {
 	unsigned int	i;

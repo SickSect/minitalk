@@ -14,5 +14,6 @@ typedef struct s_arg
 
 void ft_putstr(char *str, int fd);
 int	ft_atoi(const char *str);
+void get_char(char str, int pid);
 
 #endif

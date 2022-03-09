@@ -2,22 +2,12 @@
 
 void	send(t_arg *arg)
 {
-	unsigned int	i;
-	unsigned int	bit;
+	size_t	i;
 
 	i = 0;
 	while(arg->str[i])
 	{
-		bit = 0;
-		while(bit < 8)
-		{
-			if(arg->str[i] & (1 << bit))
-				kill(arg->pid, SIGUSR2);
-			else
-				kill(arg->pid, SIGUSR1);
-			usleep(200);
-			bit++;
-		}
+		get_char(arg->str[i], arg->pid);
 		i++;
 	}
 }
@@ -42,6 +32,7 @@ int check_argv(char *str)
 
 int	check_in(t_arg *arg, int argc, char **argv)
 {
+	
 	if(!arg || argc != 3 || !check_argv(argv[1]))
 		return (-1);
 	arg->pid = ft_atoi(argv[1]);
@@ -49,10 +40,16 @@ int	check_in(t_arg *arg, int argc, char **argv)
 	return (1);
 }
 
+static void know_handler(int sig)
+{
+	(void)sig;
+}
+
 int main(int argc, char **argv)
 {
 	t_arg    arg;
 
+	signal(SIGUSR1, know_handler);
 	if (check_in(&arg, argc, argv) == -1)
 	{
 		ft_putstr("Invalid CLI arguments", 2);

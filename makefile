@@ -16,7 +16,7 @@ FLG = -Iinclude -Wall -Werror -Wextra
 all :  $(CLIENT) $(SERVER)
 
 bonus : $(B_OBJ_C) $(B_OBJ_S)
-	rm -rf $(OBJ_C) $(OBJ_S)
+	rm -rf $(OBJ_C) $(OBJ_S) 
 	gcc $(FLG) -o client $(B_OBJ_C)
 	gcc $(FLG) -o server $(B_OBJ_S)
 

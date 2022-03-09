@@ -1,6 +1,6 @@
 #include "client.h"
 
-void ft_putstr(char *str, int fd)
+void	ft_putstr(char *str, int fd)
 {
 	unsigned int	i;
 

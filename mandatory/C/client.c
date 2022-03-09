@@ -1,36 +1,41 @@
 #include "client.h"
-#include <stdio.h>
+
+void get_char(char str, int pid)
+{
+	int	bit;
+
+	bit = 0;
+	while (bit < 8)
+	{
+		if (str & (1 << bit))
+			kill(pid, SIGUSR2);
+		else
+			kill(pid, SIGUSR1);
+		usleep(200);
+		bit++;
+	}
+}
 
 void	send(t_arg *arg)
 {
-	unsigned int	i;
-	unsigned int	bit;
+	size_t	i;
 
 	i = 0;
 	while(arg->str[i])
 	{
-		bit = 0;
-		while(bit < 8)
-		{
-			if(arg->str[i] & (1 << bit))
-				kill(arg->pid, SIGUSR2);
-			else
-				kill(arg->pid, SIGUSR1);
-			usleep(200);
-			bit++;
-		}
+		get_char(arg->str[i], arg->pid);
 		i++;
 	}
 }
 
-int check_argv(char *str)
+int	check_argv(char *str)
 {
 	unsigned int	i;
 	int				res;
 
 	i = 0;
 	res = -1;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] >= '0' && str[i] <= '9')
 			res = 1;

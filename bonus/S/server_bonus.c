@@ -5,10 +5,11 @@ void	ft_putchar_fd(char c, int fd)
 	write (fd, &c, 1);
 }
 
-static void	handler_msg(int sig)
+static void	handler_msg(int sig, siginfo_t *info, void *context)
 {
 	static t_char chr = {0, 0};
 
+	(void)context;
 	if(sig == SIGUSR2)
 		chr.character |= 1 << chr.bit;
 	chr.bit++;
@@ -18,6 +19,7 @@ static void	handler_msg(int sig)
 		chr.character = 0;
 		chr.bit = 0;
 	}
+	kill(info->si_pid, SIGUSR1);
 }
 
 static void	handler_exit(int sig)
@@ -44,9 +46,15 @@ void	print_pid(void)
 
 int	main(void)
 {
+	struct sigaction sa;
+
 	print_pid();
-	signal(SIGUSR1, handler_msg);
-	signal(SIGUSR2, handler_msg);
+	sa.sa_handler = SIG_DFL; 
+	sa.sa_sigaction = handler_msg;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_SIGINFO;
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	signal(SIGINT, handler_exit);
 	signal(SIGTERM, handler_exit);
 	while (1)
